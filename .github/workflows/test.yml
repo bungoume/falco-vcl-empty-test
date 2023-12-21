@@ -1,0 +1,37 @@
+name: Test
+
+on:
+  workflow_dispatch:
+  pull_request:
+  workflow_call:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install falco
+        run: |
+          curl -L -o ./falco https://github.com/ysugimoto/falco/releases/download/v1.2.1/falco-linux-amd64
+          chmod +x ./falco
+
+      - name: run falco lint
+        run: |
+          falco lint -vv empty_sample.vcl
+
+      - name: run falco test
+        run: |
+          falco test -vv empty_sample.vcl
+
+      - name: run falco test
+        run: |
+          falco test empty_sample.vcl --filter '*.test.vcl'

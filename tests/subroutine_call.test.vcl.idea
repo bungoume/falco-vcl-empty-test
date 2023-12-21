@@ -1,0 +1,45 @@
+sub test_subsubroutine_call_recv {
+	# sould be called subsub_recv routine.
+
+	testing.call_subroutine("call_subsub_recv");
+
+	assert.call("subsub_recv");
+	assert.not_call("sub2_recv");
+
+	# sub idea
+	testing.mock("call_subsub_recv");
+	testing.call_subroutine("call_subsub_recv");
+	assert.true(testing.mock("call_subsub_recv").called);
+}
+
+sub test_error_call_recv {
+	# should be called vcl_error.
+
+	testing.call_subroutine("redirect_recv");
+	assert.call_error_with(601, "/redirect/target");
+}
+
+
+sub test_return_recv {
+	set req.url = "/public/path";
+	testing.call_subroutine("main_recv");
+	assert.return_with(lookup);
+
+	set req.url = "/private/path";
+	testing.call_subroutine("main_recv");
+	assert.return_with(pass);
+
+	set req.url = "/private/path";
+	testing.call_subroutine("sub_recv");
+	assert.not_return_with_state();
+}
+
+sub test_restart_recv {
+	testing.call_subroutine("call_restart_recv");
+	assert.call_restart();
+}
+
+sub test_upgrade_recv {
+	testing.call_subroutine("call_upgarde_recv");
+	assert.call_upgrade();
+}

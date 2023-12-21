@@ -1,5 +1,9 @@
 # https://fiddle.fastly.dev/fiddle/6a433b2e
 
+backend default_0 {
+  .host = "example.com";
+}
+
 sub vcl_recv {
     declare local var.is_null BOOL;
     declare local var.is_empty BOOL;

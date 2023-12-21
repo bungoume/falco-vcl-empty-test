@@ -26,12 +26,12 @@ jobs:
 
       - name: run falco lint
         run: |
-          falco lint -vv empty_sample.vcl
+          ./falco lint -vv empty_sample.vcl
 
       - name: run falco test
         run: |
-          falco test -vv empty_sample.vcl
+          ./falco test -vv empty_sample.vcl
 
       - name: run falco test
         run: |
-          falco test empty_sample.vcl --filter '*.test.vcl'
+          ./falco test empty_sample.vcl --filter '*.test.vcl'

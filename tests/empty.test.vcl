@@ -16,9 +16,8 @@ sub test_empty_recv {
     assert.true(var.is_empty);
     assert.true(var.is_equal);
 
-    declare local var.message STRING;
-    set var.message = "EMPTY var:" var.EMPTY "-" std.strlen(var.EMPTY) "-" var.is_null "-" var.is_empty "-" var.is_equal;
-    assert.equal(var.message, "EMPTY var:-0-0-1-1");
+    set req.http.MESSAGE = "EMPTY var:" var.EMPTY "-" std.strlen(var.EMPTY) "-" var.is_null "-" var.is_empty "-" var.is_equal;
+    assert.equal(req.http.MESSAGE, "EMPTY var:-0-0-1-1");
 }
 
 // @scope: recv
@@ -38,9 +37,8 @@ sub test_empty_recv {
     assert.true(var.is_empty);
     assert.true(var.is_equal);
 
-    declare local var.message STRING;
-    set var.message = "EMPTY header:" req.http.EMPTY "-" std.strlen(req.http.EMPTY) "-" var.is_null "-" var.is_empty "-" var.is_equal;
-    assert.equal(var.message, "EMPTY header:-0-0-1-1");
+    set req.http.MESSAGE = "EMPTY header:" req.http.EMPTY "-" std.strlen(req.http.EMPTY) "-" var.is_null "-" var.is_empty "-" var.is_equal;
+    assert.equal(req.http.MESSAGE, "EMPTY header:-0-0-1-1");
 }
 
 // @scope: recv
@@ -62,9 +60,8 @@ sub test_empty_recv {
     assert.true(var.is_empty);
     assert.true(var.is_equal);
 
-    declare local var.message STRING;
-    set var.message = "EMPTY VARS:" req.http.VARS:EMPTY "-" std.strlen(req.http.VARS:EMPTY) "-" var.is_null "-" var.is_empty "-" var.is_equal;
-    assert.equal(var.message, "EMPTY VARS:-0-0-1-1");
+    set req.http.MESSAGE = "EMPTY VARS:" req.http.VARS:EMPTY "-" std.strlen(req.http.VARS:EMPTY) "-" var.is_null "-" var.is_empty "-" var.is_equal;
+    assert.equal(req.http.MESSAGE, "EMPTY VARS:-0-0-1-1");
 }
 
 // @scope: recv
@@ -84,9 +81,8 @@ sub test_empty_recv {
     assert.false(var.is_empty);
     assert.false(var.is_equal);
 
-    declare local var.message STRING;
-    set var.message = "NOTSET var:" var.NOTSET "-" std.strlen(var.NOTSET) "-" var.is_null "-" var.is_empty "-" var.is_equal;
-    assert.equal(var.message, "NOTSET var:-0-1-0-0");
+    set req.http.MESSAGE = "NOTSET var:" var.NOTSET "-" std.strlen(var.NOTSET) "-" var.is_null "-" var.is_empty "-" var.is_equal;
+    assert.equal(req.http.MESSAGE, "NOTSET var:(null)-0-1-0-0");
 }
 
 // @scope: recv
@@ -104,9 +100,8 @@ sub test_empty_recv {
     assert.false(var.is_empty);
     assert.false(var.is_equal);
 
-    declare local var.message STRING;
-    set var.message = "UNDEF header:" req.http.UNDEF "-" std.strlen(req.http.UNDEF) "-" var.is_null "-" var.is_empty "-" var.is_equal;
-    assert.equal(var.message, "UNDEF header:-0-1-0-0");
+    set req.http.MESSAGE = "UNDEF header:" req.http.UNDEF "-" std.strlen(req.http.UNDEF) "-" var.is_null "-" var.is_empty "-" var.is_equal;
+    assert.equal(req.http.MESSAGE, "UNDEF header:(null)-0-1-0-0");
 }
 
 // @scope: recv
@@ -124,9 +119,8 @@ sub test_empty_recv {
     assert.false(var.is_empty);
     assert.false(var.is_equal);
 
-    declare local var.message STRING;
-    set var.message = "UNDEF VARS:" req.http.VARS:UNDEF "-" std.strlen(req.http.VARS:UNDEF) "-" var.is_null "-" var.is_empty "-" var.is_equal;
-    assert.equal(var.message, "UNDEF VARS:-0-1-0-0");
+    set req.http.MESSAGE = "UNDEF VARS:" req.http.VARS:UNDEF "-" std.strlen(req.http.VARS:UNDEF) "-" var.is_null "-" var.is_empty "-" var.is_equal;
+    assert.equal(req.http.MESSAGE, "UNDEF VARS:(null)-0-1-0-0");
 }
 
 // @scope: recv
@@ -147,9 +141,8 @@ sub test_empty_recv {
     assert.false(var.is_empty);
     assert.false(var.is_equal);
 
-    declare local var.message STRING;
-    set var.message = "UNSET header:" req.http.UNSET "-" std.strlen(req.http.UNSET) "-" var.is_null "-" var.is_empty "-" var.is_equal;
-    assert.equal(var.message, "UNSET header:-0-1-0-0");
+    set req.http.MESSAGE = "UNSET header:" req.http.UNSET "-" std.strlen(req.http.UNSET) "-" var.is_null "-" var.is_empty "-" var.is_equal;
+    assert.equal(req.http.MESSAGE, "UNSET header:(null)-0-1-0-0");
 }
 
 // @scope: recv
@@ -171,9 +164,8 @@ sub test_empty_recv {
     assert.false(var.is_empty);
     assert.false(var.is_equal);
 
-    declare local var.message STRING;
-    set var.message = "UNSET VARS:" req.http.VARS:UNSET "-" std.strlen(req.http.VARS:UNSET) "-" var.is_null "-" var.is_empty "-" var.is_equal;
-    assert.equal(var.message, "UNSET VARS:-0-1-0-0");
+    set req.http.MESSAGE = "UNSET VARS:" req.http.VARS:UNSET "-" std.strlen(req.http.VARS:UNSET) "-" var.is_null "-" var.is_empty "-" var.is_equal;
+    assert.equal(req.http.MESSAGE, "UNSET VARS:(null)-0-1-0-0");
 }
 
 
@@ -196,7 +188,26 @@ sub test_empty_recv {
     assert.true(var.is_empty);
     assert.true(var.is_equal);
 
+    set req.http.MESSAGE = "SETNULL(fail) var:" var.SETNULL "-" std.strlen(var.SETNULL) "-" var.is_null "-" var.is_empty "-" var.is_equal;
+    assert.equal(req.http.MESSAGE, "SETNULL(fail) var:-0-0-1-1");
+}
+
+
+// @scope: recv
+// @suite: CONCAT not_set value
+sub test_empty_recv {
+    declare local var.NOTSET STRING;
     declare local var.message STRING;
-    set var.message = "SETNULL(fail) var:" var.SETNULL "-" std.strlen(var.SETNULL) "-" var.is_null "-" var.is_empty "-" var.is_equal;
-    assert.equal(var.message, "SETNULL(fail) var:-0-0-1-1");
+
+    set req.http.MESSAGE = var.NOTSET;
+    assert.equal(req.http.MESSAGE, "[not set]");
+
+    set var.message = var.NOTSET;
+    assert.equal(var.message, "");
+
+    set req.http.MESSAGE = "var:" var.NOTSET;
+    assert.equal(req.http.MESSAGE, "var:(null)");
+
+    set var.message = "var:" var.NOTSET;
+    assert.equal(var.message, "var:");
 }

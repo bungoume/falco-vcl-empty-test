@@ -33,10 +33,10 @@ sub test_empty_recv {
     if(!req.http.EMPTY){set var.is_null = true;}else{set var.is_null = false;}
     if(req.http.EMPTY==""){set var.is_empty = true;}else{set var.is_empty = false;}
     if(req.http.EMPTY==req.http.EMPTY){set var.is_equal = true;}else{set var.is_equal = false;}
-    #assert.equal(std.strlen(req.http.EMPTY), 0);
-    #assert.false(var.is_null);
-    #assert.true(var.is_empty);
-    #assert.true(var.is_equal);
+    assert.equal(std.strlen(req.http.EMPTY), 0);
+    assert.false(var.is_null);
+    assert.true(var.is_empty);
+    assert.true(var.is_equal);
 
     declare local var.message STRING;
     set var.message = "EMPTY header:" req.http.EMPTY "-" std.strlen(req.http.EMPTY) "-" var.is_null "-" var.is_empty "-" var.is_equal;
@@ -57,10 +57,10 @@ sub test_empty_recv {
     if(!req.http.VARS:EMPTY){set var.is_null = true;}else{set var.is_null = false;}
     if(req.http.VARS:EMPTY==""){set var.is_empty = true;}else{set var.is_empty = false;}
     if(req.http.VARS:EMPTY==req.http.VARS:EMPTY){set var.is_equal = true;}else{set var.is_equal = false;}
-    #assert.equal(std.strlen(req.http.VARS:EMPTY), 0);
-    #assert.false(var.is_null);
-    #assert.true(var.is_empty);
-    #assert.true(var.is_equal);
+    assert.equal(std.strlen(req.http.VARS:EMPTY), 0);
+    assert.false(var.is_null);
+    assert.true(var.is_empty);
+    assert.true(var.is_equal);
 
     declare local var.message STRING;
     set var.message = "EMPTY VARS:" req.http.VARS:EMPTY "-" std.strlen(req.http.VARS:EMPTY) "-" var.is_null "-" var.is_empty "-" var.is_equal;
@@ -142,10 +142,10 @@ sub test_empty_recv {
     if(!req.http.UNSET){set var.is_null = true;}else{set var.is_null = false;}
     if(req.http.UNSET==""){set var.is_empty = true;}else{set var.is_empty = false;}
     if(req.http.UNSET==req.http.UNSET){set var.is_equal = true;}else{set var.is_equal = false;}
-    #assert.equal(std.strlen(req.http.UNSET), 0);
-    #assert.true(var.is_null);
-    #assert.false(var.is_empty);
-    #assert.false(var.is_equal);
+    assert.equal(std.strlen(req.http.UNSET), 0);
+    assert.true(var.is_null);
+    assert.false(var.is_empty);
+    assert.false(var.is_equal);
 
     declare local var.message STRING;
     set var.message = "UNSET header:" req.http.UNSET "-" std.strlen(req.http.UNSET) "-" var.is_null "-" var.is_empty "-" var.is_equal;
@@ -166,10 +166,10 @@ sub test_empty_recv {
     if(!req.http.VARS:UNSET){set var.is_null = true;}else{set var.is_null = false;}
     if(req.http.VARS:UNSET==""){set var.is_empty = true;}else{set var.is_empty = false;}
     if(req.http.VARS:UNSET==req.http.VARS:UNSET){set var.is_equal = true;}else{set var.is_equal = false;}
-    #assert.equal(std.strlen(req.http.VARS:UNSET), 0);
-    #assert.true(var.is_null);
-    #assert.false(var.is_empty);
-    #assert.false(var.is_equal);
+    assert.equal(std.strlen(req.http.VARS:UNSET), 0);
+    assert.true(var.is_null);
+    assert.false(var.is_empty);
+    assert.false(var.is_equal);
 
     declare local var.message STRING;
     set var.message = "UNSET VARS:" req.http.VARS:UNSET "-" std.strlen(req.http.VARS:UNSET) "-" var.is_null "-" var.is_empty "-" var.is_equal;

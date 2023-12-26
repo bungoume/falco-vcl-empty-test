@@ -1,3 +1,46 @@
+# https://fiddle.fastly.dev/fiddle/da790883
+
+// @scope: recv
+// @suite: SET VARS VALUE
+sub test_recv {
+    set req.http.VARS = "";
+    set req.http.VARS:VALUE = "V";
+    assert.equal(req.http.VARS, "VALUE=V");
+}
+
+// @scope: recv
+// @suite: SET NOT-INITIALIZED VARS VALUE
+sub test_recv {
+    set req.http.VARS:VALUE = "V";
+    assert.equal(req.http.VARS, "VALUE=V");
+}
+
+// @scope: recv
+// @suite: SET MULTIPLE VARS VALUE
+sub test_recv {
+    set req.http.VARS = "";
+    set req.http.VARS:VALUE = "V";
+    set req.http.VARS:VALUE2 = "V2";
+    assert.equal(req.http.VARS, "VALUE=V, VALUE2=V2");
+}
+
+// @scope: recv
+// @suite: SET EMPTY VARS VALUE
+sub test_recv {
+    set req.http.VARS = "";
+    set req.http.VARS:VALUE = "";
+    assert.equal(req.http.VARS, "VALUE");
+}
+
+// @scope: recv
+// @suite: SET MULTIPLE EMPTY VARS VALUE
+sub test_recv {
+    set req.http.VARS = "";
+    set req.http.VARS:VALUE = "";
+    set req.http.VARS:VALUE2 = "";
+    assert.equal(req.http.VARS, "VALUE, VALUE2");
+}
+
 // @scope: recv
 // @suite: UNSET VARS ALL VALUE
 sub test_recv {
@@ -18,14 +61,6 @@ sub test_recv {
 }
 
 // @scope: recv
-// @suite: EMPTY VARS VALUE
-sub test_recv {
-    set req.http.VARS = "";
-    set req.http.VARS:VALUE = "";
-    assert.equal(req.http.VARS, "VALUE");
-}
-
-// @scope: recv
 // @suite: OVERRIDE VARS VALUE
 sub test_recv {
     set req.http.VARS = "";
@@ -35,9 +70,10 @@ sub test_recv {
 }
 
 // @scope: recv
-// @suite: OVERRIDE NOT-INITIALIZED-VARS VALUE
+// @suite: SET NULL VALUE
 sub test_recv {
+    set req.http.VARS = "";
     set req.http.VARS:VALUE = "V";
-    set req.http.VARS:VALUE = "O";
-    assert.equal(req.http.VARS, "VALUE=O");
+    set req.http.VARS:VALUE = req.http.NULL;
+    assert.equal(req.http.VARS, "VALUE");
 }

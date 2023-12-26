@@ -1,3 +1,5 @@
+# https://fiddle.fastly.dev/fiddle/aa00bc57
+# https://fiddle.fastly.dev/fiddle/6221d4db
 
 // @scope: recv
 // @suite: ADD header(add-add-add) BUGGY

@@ -33,3 +33,11 @@ sub test_recv {
     set req.http.VARS:VALUE = "O";
     assert.equal(req.http.VARS, "VALUE=O");
 }
+
+// @scope: recv
+// @suite: OVERRIDE NOT-INITIALIZED-VARS VALUE
+sub test_recv {
+    set req.http.VARS:VALUE = "V";
+    set req.http.VARS:VALUE = "O";
+    assert.equal(req.http.VARS, "VALUE=O");
+}

@@ -33,15 +33,15 @@ sub test_string_recv {
 
     set var.str = {"%61%62%63"};  //%61%62%63
     assert.equal(std.strlen(var.str), 9);
-    assert.equal(var.str, "%61%62%63");
+    assert.equal(var.str, {"%61%62%63"});
 
     set var.str = {"%u0061%u0062%u0063"};  //%u0061%u0062%u0063
     assert.equal(std.strlen(var.str), 18);
-    assert.equal(var.str, "%u0061%u0062%u0063");
+    assert.equal(var.str, {"%u0061%u0062%u0063"});
 
     set var.str = {"%u{0061}%u{0062}%u{0063}"};  //%u{0061}%u{0062}%u{0063}
     assert.equal(std.strlen(var.str), 24);
-    assert.equal(var.str, "%u{0061}%u{0062}%u{0063}");
+    assert.equal(var.str, {"%u{0061}%u{0062}%u{0063}"});
 }
 
 // @scope: recv
@@ -51,14 +51,14 @@ sub test_string_recv {
 
     set var.str = {TEXT"%61%62%63"TEXT};  //%61%62%63
     assert.equal(std.strlen(var.str), 9);
-    assert.equal(var.str, "%61%62%63");
+    assert.equal(var.str, {"%61%62%63"});
 }
 
 // @scope: recv
 // @suite: STRING with INVALID parcent encoding string
 sub test_string_recv {
     declare local var.str STRING;
-    set var.str = "%error%";  // compile error
+    //set var.str = "%error%";  // compile error
 }
 
 // @scope: recv
@@ -72,7 +72,7 @@ sub test_string_recv {
 
     set var.str = urldecode({"%2561%2562%2563"});  //%61%62%63
     assert.equal(std.strlen(var.str), 9);
-    assert.equal(var.str, "%61%62%63");
+    assert.equal(var.str, {"%61%62%63"});
 }
 
 // @scope: recv

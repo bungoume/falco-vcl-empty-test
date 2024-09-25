@@ -24,7 +24,7 @@ jobs:
 
       - name: Install falco
         run: |
-          curl -L -o ./falco https://github.com/ysugimoto/falco/releases/download/v1.3.0/falco-linux-amd64
+          curl -L -o ./falco https://github.com/ysugimoto/falco/releases/download/v1.10.0/falco-linux-amd64
           chmod +x ./falco
 
       - name: run falco lint

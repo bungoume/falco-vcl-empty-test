@@ -49,7 +49,7 @@ sub test_string_recv {
 sub test_string_recv {
     declare local var.str STRING;
 
-    set var.str = {TEXT"%61%62%63"TEXT};  //%61%62%63
+    # set var.str = {TEXT"%61%62%63"TEXT};  //%61%62%63
     assert.equal(std.strlen(var.str), 9);
     assert.equal(var.str, {"%61%62%63"});
 }

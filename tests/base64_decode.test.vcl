@@ -27,7 +27,7 @@ sub test_base64_decode_recv {
     declare local var.input STRING;
     declare local var.decoded STRING;
 
-    set var.input = "OiJ0ZXN0";
+    set var.input = "aGVsbG8=0";
 
     set var.decoded = digest.base64_decode(var.input);
     # assert.equal(std.strlen(var.decoded), 5);
